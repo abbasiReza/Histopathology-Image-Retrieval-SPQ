@@ -54,12 +54,14 @@ pip install thop
 
 Supervised deep learning-based hash and vector quantization are enabling fast and large-scale image retrieval systems. By fully exploiting label annotations, they are achieving outstanding retrieval performances compared to the conventional methods. However, it is painstaking to assign labels precisely for a vast amount of training data, and also, the annotation process is error-prone. To tackle these issues, we propose the first deep unsupervised image retrieval method dubbed Self-supervised Product Quantization (SPQ) network, which is label-free and trained in a self-supervised manner. We design a Cross Quantized Contrastive learning strategy that jointly learns codewords and deep visual descriptors by comparing individually transformed images (views). Our method analyzes the image contents to extract descriptive features, allowing us to understand image representations for accurate retrieval. By conducting extensive experiments on benchmarks, we demonstrate that the proposed method yields state-of-the-art results even without supervised pretraining.
 
-## Concept
+ 
+## Overall Architecture
 
-<p align="center"><img src="Concept.png" width="900"></p>
+<p align="center"><img src="Overall_architecture.png" width="900"></p>
 
-By maximizing cross-similarity between the deep descriptor of one view and the product quantized descriptor of the other, both codewords and deep descriptors are jointly trained to contain discriminative image content representations in SPQ.
+GPQ consitsts of three components: feature extractor *F*, PQ table *Z* and classifier *C*. All the components are trained with the small amount of labeled data with *N-pair Product Quantization loss*, and the large amount of unlabeled data with *Subspace Entropy Mini-max loss*.
 
-## An illustration of training procedure in SPQ
+## 2D Voronoi Diagram of Our Concept
+<p align="center"><img src="2D_voronoi_illustration.png" width="900"></p>
 
-<p align="center"><img src="Illustrated_example.png" width="900"></p>
+While training, codewords move toward unlabeled data points, and at the same time, both labeled and unlabeled data points cluster near the codewords.
